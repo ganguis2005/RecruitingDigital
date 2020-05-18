@@ -1,0 +1,60 @@
+
+#root,
+.app-container {
+  width: 100%;
+  height: 100%
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /*text-align: center;*/
+
+  min-height: 10vh;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  font-size: calc(10px + 2vmin);
+}
+
+.app__header {
+  width: auto;
+  height: auto;
+  pointer-events: none;
+}
+
+.app__logo {
+  display: block;
+  width: 512px;
+  height: 288px;
+  margin: 8px;
+  background: url("./components/mullerLogo.png") no-repeat;
+  background-size: contain;
+}
+
+.app__logo--medium {
+  width: calc(512px / 1.5);
+  height: calc(288px / 1.5);
+  margin-bottom: 32px;
+}
+
+.app__logo--small {
+  width: calc(512px / 2);
+  height: calc(288px / 2);
+}
+
+.app__content {
+  text-align: center;
+}
+
+.app__actions{
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: left;
+  width: 10px;
+  height: 10px;
+}
+

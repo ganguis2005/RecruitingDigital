@@ -1,0 +1,15 @@
+.BasicStyle {
+  background-color: white;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+
+}
+
+.Logo {
+  height: 40vmin;
+  pointer-events: none;
+}
