@@ -14,8 +14,8 @@ class Occupation extends React.Component {
       options: [
         {name: 'Informatik', value: 'Informatik'},
         {name: 'Betribswirtschaftslehre', value: 'Betriebswirtschaftslehre'},
-        {name: 'Biologie', value: 'Biologie'},
-      ],
+        {name: 'Jura', value: 'Jura'},
+      ]
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -37,7 +37,8 @@ class Occupation extends React.Component {
               <RadioGroup aria-label="occupation" name="occupation"  onChange={this.props.setOccupation}>
                   <FormControlLabel value="Schüler" control={<Radio />} label="Schüler" />
                   <FormControlLabel value="Student" control={<Radio />} label="Student" />
-                  <FormControlLabel value="Absolvent" control={<Radio />} label="Absolvent" />
+                  <FormControlLabel value="Berufseinsteiger" control={<Radio />} label="Berufseinsteiger" />
+                  <FormControlLabel value="Berufserfahren" control={<Radio />} label="Berufserfahren" />
               </RadioGroup>
               </FormControl>  
               <SimpleSel label="Fachbereich" options={this.state.options} setFach={this.props.setFach}/>

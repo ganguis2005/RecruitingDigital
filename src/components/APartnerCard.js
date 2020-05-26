@@ -14,7 +14,7 @@ export default class APartnerCard extends Component {
             boxShadow: '16px 11px 32px -13px rgba(0,0,0,0.75)',
          }
          const mProfile = {
-            background:`url(${this.props.avatar}) center no-repeat`,
+            backgroundImage:`url(${this.props.avatar})`,
             backgroundSize: 'cover',
             height:'80px',
             width:'80px',
@@ -45,7 +45,7 @@ export default class APartnerCard extends Component {
                     <p style={descriptionStyle}>{this.props.description}</p>
                     <p style={tischStyle}>{`wartet auf dich am Tisch ${this.props.tish}`}</p>
                     <div style={{fontSize: '15px', paddingBottom: '20px'}}>
-                     <a href="https://career5.successfactors.eu/career?company=mllerservi&site=VjItNGdGZlNGSEJEYTVJSVRUaXp4N1E4Zz09">Stellenanzeigen</a>
+                     <a href={this.props.stellenanzeigen}>Stellenanzeigen</a>
                     </div>
                     
             </div>
@@ -56,6 +56,7 @@ APartnerCard.defaultProps = {
     avatar: '/static/images/avatar/1.jpg',
     aPname: '',
     description: '',
-    tish:''
+    tish:'',
+    stellenanzeigen:'',
 }
 

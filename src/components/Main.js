@@ -56,7 +56,7 @@ export default class Main extends Component {
 
     setOccupation(event) {
         this.setState({occupation: event.target.value});
-      };
+    };
 
     setFach(value) {
         this.setState({fachbereich: value});
@@ -120,7 +120,7 @@ export default class Main extends Component {
             case (3) : return <Occupation forwardStep={this.forwardStep} prevStep={this.prevStep} vorname={this.state.vorname} setOccupation={this.setOccupation} setFach={this.setFach} addUser={this.addUser}/>
             
             
-            case (4) : return < APartner aPartner={this.state.aPartner} user={this.state.id} />
+            case (4) : return < APartner user={this.state.id} occupation={this.state.occupation} fachbereich={this.state.fachbereich}/>
         }
     }
 }

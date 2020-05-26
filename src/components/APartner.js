@@ -37,7 +37,7 @@ class APartner extends React.Component {
 
 
             let aPRef = fire.collection('aPartner').doc(`${choosenAP.id}`);
-            let updateAvalible = aPRef.update({avalible: false});  
+            //let updateAvalible = aPRef.update({avalible: false});  
             let updateIncomingUser = aPRef.update({incomingUser: this.props.user});  
 
 
@@ -56,6 +56,14 @@ class APartner extends React.Component {
   
   render () {
     let aPartner = this.state.aPartner;
+    let stellenanzeigen = '';
+    if(this.props.fachbereich ==='Informatik') {
+      stellenanzeigen = 'https://confluence.informatik.hs-augsburg.de/pages/viewpage.action?pageId=33950769'
+    } else if (this.props.fachbereich ==='Betriebswirtschaftslehre') {
+      stellenanzeigen = 'link 2'
+    } else if (this.props.fachbereich ==='Jura') {
+      stellenanzeigen = 'link 3'
+    }
   
 
     return(
@@ -70,6 +78,7 @@ class APartner extends React.Component {
             aNName={aPartner.nachname}
             description={aPartner.description}
             tish={aPartner.tish}
+            stellenanzeigen={stellenanzeigen}
           />
         </div>
       </div>    
