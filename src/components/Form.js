@@ -3,9 +3,9 @@ import TextField from '@material-ui/core/TextField';
 import CustomButtom from './shared/CustomButton';
 import BackButton from './shared/BackButton';
 
-//in dienem Form wird nach Vorname, Nachname und Email gefragt
+//in diesem Form wird nach Vorname, Nachname und Email gefragt
 export default class Form extends Component {
-    
+    //wird ausgefuert wenn Textfelder geandert werden und schickt das an die Main-Komponente.
     change = e => {
         
         if(e.target.id === 'vorname') {
@@ -17,7 +17,7 @@ export default class Form extends Component {
         }
         
     };
-
+    
     render() {
     
         return (

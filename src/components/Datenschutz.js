@@ -15,10 +15,12 @@ export default class Datenschutz extends Component {
         this.toggleDsDisplay = this.toggleDsDisplay.bind(this);
 
     }
+    //displays die Weiter Button wenn man mit der DAtenschutz einverstanden ist
     toggleDsDisplay() {
         let newState = !this.state.displayDS;
         this.setState({displayDS: newState});
     }
+    //Check oder uncheck Checkbox
     handleCheck() {
         let newChecked;
         if(this.state.checked === false) {

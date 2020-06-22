@@ -22,6 +22,7 @@ class Occupation extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
+  //Neue User in der Db hinzugefuegt ruft die neachste Step auf
   handleClick() {
     this.props.forwardStep();
     this.props.addUser();

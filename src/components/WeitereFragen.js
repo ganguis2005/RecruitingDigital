@@ -7,7 +7,7 @@ import SimpleSel from './shared/SimpleSel';
 //hier wird nach der gewuenscte Ort, Position und Anfangsdatum
 //wenn man weiter clickt werden die neue Eingaben zu den schon kreierte User in der Db hinzugefuegt
 export default class WeitereFragen extends Component {
-    
+     //wird ausgefuert wenn Textfelder geandert werden und schickt das an die Main-Komponente.
     change = e => {
         
         if(e.target.id === 'vorname') {
@@ -19,6 +19,7 @@ export default class WeitereFragen extends Component {
         }
         
     };
+    //User in der Db mit den erweiteten Daten aktuallisiert
     submitUndWeiter = () => {
         this.props.forwardStep();
         this.props.addPosition();
