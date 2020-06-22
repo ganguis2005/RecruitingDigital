@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import CustomButtom from './shared/CustomButton';
 import BackButton from './shared/BackButton';
+
+//in dienem Form wird nach Vorname, Nachname und Email gefragt
 export default class Form extends Component {
     
     change = e => {

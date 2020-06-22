@@ -4,6 +4,7 @@ import Datenschutz from './Datenschutz';
 import Occupation from './Occupation';
 import APartner from './APartner';
 import fire from '../fire.js';
+import WeitereFragen from './WeitereFragen';
 
 export default class Main extends Component {
     constructor(props) {
@@ -16,52 +17,54 @@ export default class Main extends Component {
             fachbereich:'',
             email:'',
             id: null,
-            //von der DB zu importieren
-            items: [],
-        };
-
-        this.forwardStep = this.forwardStep.bind(this);
-        this.prevStep = this.prevStep.bind(this);
-        this.setVorname = this.setVorname.bind(this);
-        this.setNachname = this.setNachname.bind(this);
-        this.setEmail = this.setEmail.bind(this); 
-        this.setOccupation = this.setOccupation.bind(this); 
-        this.setFach = this.setFach.bind(this);
-        this.getId = this.getId.bind(this);
-        
-        
+            anfangsDatum: '',
+            position: '',
+            ort:'',
+        };        
     }    
-
-    forwardStep() {
+    //zur weiteren Step
+    forwardStep = () => {
         let newStep= this.state.step + 1;
         this.setState({step: newStep});
     }
-
-    prevStep() {
+    //zur vorhearigen Step
+    prevStep = () => {
         let newStep= this.state.step - 1;
         this.setState({step: newStep});
     } 
-
-    setVorname(value) {
+    //Zuweisung User Vorname
+    setVorname = (value) => {
         this.setState({vorname: value});
     }
-
-    setNachname(value) {
+    //Zuweisung User Nachname    
+    setNachname = (value) => {
         this.setState({nachname: value});
     }
-
-    setEmail(value) {
+    //Zuweisung User Email
+    setEmail = (value) => {
         this.setState({email: value});
     }
-
-    setOccupation(event) {
+    //Zuweisung User Occupation    
+    setOccupation = (event) => {
         this.setState({occupation: event.target.value});
     };
-
-    setFach(value) {
+    //Zuweisung User Fachbereich    
+    setFach = (value) => {
         this.setState({fachbereich: value});
     }
-
+    //Zuweisung gewuenschte Anfagsdatum der Taetigkeit
+    setDatum = (date) => {
+        this.setState({anfangsDatum: date.target.value});
+    }
+    // Zuweisung gewuenschte Taetigkeit    
+    setPosition = (pos) => {
+        this.setState({position: pos});
+    };
+    // Zuweisung gewuenschte Taetigkeitsort des Users    
+    setOrt = (ort) => {
+        this.setState({ort: ort});
+    };
+    // Adds User Grunddaten zur Database     
     addUser = () => {
         let userRef = fire.collection('users').doc(`${this.state.id}`);
         userRef.set({
@@ -73,9 +76,17 @@ export default class Main extends Component {
             id: this.state.id,    
         });
     }
-
-
-    getId() {
+    // Adds weitere Daten des Users zur Database (Anfangsdatum, gewuenschte Taetigkeit, Taetigkeitsort)
+    addPosition = () => {
+        let userRef = fire.collection('users').doc(`${this.state.id}`);
+        userRef.update({
+            anfangsDatum: this.state.anfangsDatum,
+            position: this.state.position,
+            ort: this.state.ort,   
+        });
+    }
+    //Kreiert eine Id fuer den User (in der Db gibt es ein Counter die als laetzte verfuegware ID dient, diese Zahl wird erhoet wenn die Id zu einem User zugewiesen wird)
+    getId = () => {
         let idRef = fire.collection('idCounter').doc('idCounter');
         let getDoc = idRef.get()
           .then(doc => {
@@ -96,13 +107,6 @@ export default class Main extends Component {
             console.log('Error getting document', err);
           });
     }
-   
-    
-
-    componentWillMount() {
-        
-      
-    }
 
     componentDidMount() {
         this.getId();
@@ -110,17 +114,16 @@ export default class Main extends Component {
    
     render() { 
         
-       
-  
         switch(this.state.step) {
             case (1) : return <Datenschutz forwardStep={this.forwardStep} />;
 
             case (2) : return <Form forwardStep={this.forwardStep} prevStep={this.prevStep} setVorname={this.setVorname} setNachname={this.setNachname} setEmail={this.setEmail} />;
 
-            case (3) : return <Occupation forwardStep={this.forwardStep} prevStep={this.prevStep} vorname={this.state.vorname} setOccupation={this.setOccupation} setFach={this.setFach} addUser={this.addUser}/>
+            case (3) : return <Occupation forwardStep={this.forwardStep} prevStep={this.prevStep} vorname={this.state.vorname} setOccupation={this.setOccupation} setFach={this.setFach} addUser={this.addUser}/>;
             
-            
-            case (4) : return < APartner user={this.state.id} occupation={this.state.occupation} fachbereich={this.state.fachbereich}/>
+            case (4) : return <WeitereFragen forwardStep={this.forwardStep} prevStep={this.prevStep} handleDateChange={this.setDatum} setPosition={this.setPosition} setOrt={this.setOrt} addPosition={this.addPosition}/>
+    
+            case (5) : return < APartner user={this.state.id} occupation={this.state.occupation} fachbereich={this.state.fachbereich}/>;
         }
     }
 }

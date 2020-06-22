@@ -18,8 +18,8 @@ class APartner extends React.Component {
   randomIndex(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
+  //ein Ansprechpartner wird aus den avalible Ansprechpartner in der Db per Zufall ausgewaehlt
   getAP = () => {
-    
     let ref = fire.collection('aPartner');
     let queryRef = ref.where('avalible', '==', true)
         .get()
@@ -37,35 +37,22 @@ class APartner extends React.Component {
 
 
             let aPRef = fire.collection('aPartner').doc(`${choosenAP.id}`);
+            //Aendert die Status von dem Ansprechpartner in der Db zu unavalible
             //let updateAvalible = aPRef.update({avalible: false});  
-            let updateIncomingUser = aPRef.update({incomingUser: this.props.user});  
-
-
-
-            console.log(this.state.aPartner);
-        
+            //speichert in der Db der Ansprechpartner welche User zu ihm kommt
+            let updateIncomingUser = aPRef.update({incomingUser: this.props.user});          
           })
           .catch(err => {
             console.log('Error getting document', err);
           });
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getAP();
   }
-  
   render () {
     let aPartner = this.state.aPartner;
-    let stellenanzeigen = '';
-    if(this.props.fachbereich ==='Informatik') {
-      stellenanzeigen = 'https://confluence.informatik.hs-augsburg.de/pages/viewpage.action?pageId=33950769'
-    } else if (this.props.fachbereich ==='Betriebswirtschaftslehre') {
-      stellenanzeigen = 'link 2'
-    } else if (this.props.fachbereich ==='Jura') {
-      stellenanzeigen = 'link 3'
-    }
   
-
     return(
       <div className="app">
         <header className="app__header">
@@ -78,7 +65,6 @@ class APartner extends React.Component {
             aNName={aPartner.nachname}
             description={aPartner.description}
             tish={aPartner.tish}
-            stellenanzeigen={stellenanzeigen}
           />
         </div>
       </div>    

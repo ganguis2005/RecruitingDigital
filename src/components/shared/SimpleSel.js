@@ -27,7 +27,7 @@ class SimpleSel extends React.Component {
 
   handleChange(event) {
     this.setState({opcion: event.target.value})
-    this.props.setFach(event.target.value);
+    this.props.setSelected(event.target.value);
   }
   
   

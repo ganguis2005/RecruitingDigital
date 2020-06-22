@@ -7,6 +7,9 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import CustomButtom from './shared/CustomButton';
 import BackButton from './shared/BackButton';
+
+//in diesem Komponent wird nach aktuelle Occupation und Fachbereich gefragt
+//nachdem weiter geklickt wird ist die neue user in die Db hizugefuegt
 class Occupation extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +44,7 @@ class Occupation extends React.Component {
                   <FormControlLabel value="Berufserfahren" control={<Radio />} label="Berufserfahren" />
               </RadioGroup>
               </FormControl>  
-              <SimpleSel label="Fachbereich" options={this.state.options} setFach={this.props.setFach}/>
+              <SimpleSel label="Fachbereich" options={this.state.options} setSelected={this.props.setFach}/>
               <CustomButtom cStyle={{width: '200px', maxHeight: '40px', minHeight: '40px', marginTop:'10px',textTransform: 'none'}} 
                             title="Weiter" 
                             forwardStep={this.handleClick}

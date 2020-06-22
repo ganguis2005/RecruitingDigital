@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+//Komponent Zeigt den asignierten Ansprechpartner und wo er sich befindet
+//und ein Link zum Successfactors
 export default class APartnerCard extends Component {
     render() {
         const bookStyle = {
@@ -45,7 +47,7 @@ export default class APartnerCard extends Component {
                     <p style={descriptionStyle}>{this.props.description}</p>
                     <p style={tischStyle}>{`wartet auf dich am Tisch ${this.props.tish}`}</p>
                     <div style={{fontSize: '15px', paddingBottom: '20px'}}>
-                     <a href={this.props.stellenanzeigen}>Stellenanzeigen</a>
+                     <a href="https://career5.successfactors.eu/career?company=mllerservi&site=VjItNGdGZlNGSEJEYTVJSVRUaXp4N1E4Zz09">Stellenanzeigen</a>
                     </div>
                     
             </div>
